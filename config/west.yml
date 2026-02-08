@@ -17,5 +17,6 @@ manifest:
       import:
         name-allowlist:
           - hal_nxp
+          - cmsis
   self:
     path: config
