@@ -18,3 +18,9 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
+
+include:
+  - board: alloy_rise_75
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    artifact-name: hyperx_alloy_rise_75
