@@ -1,4 +1,5 @@
 if BOARD_ALLOY_RISE_75
+
 config BOARD
     default "alloy_rise_75"
 
