@@ -13,8 +13,11 @@ manifest:
     - name: zephyr
       remote: zmkfirmware
       revision: v4.1.0+zmk-fixes
+      clone-depth: 1
       import:
         name-allowlist:
+          - nanopb
+          - cmsis
           - hal_nxp
   self:
     path: config
