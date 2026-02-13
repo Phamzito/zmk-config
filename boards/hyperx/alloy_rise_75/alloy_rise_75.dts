@@ -49,12 +49,12 @@
         compatible = "zmk,kscan-gpio-matrix";
         diode-direction = "row2col"; 
         row-gpios =
-            <&gpio0 30 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            <&gpio0 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            <&gpio0 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            <&gpio0 3  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+            <&gpio0 30 GPIO_ACTIVE_HIGH>,
+            <&gpio0 29 GPIO_ACTIVE_HIGH>,
+            <&gpio0 19 GPIO_ACTIVE_HIGH>,
+            <&gpio0 6  GPIO_ACTIVE_HIGH>,
+            <&gpio0 4  GPIO_ACTIVE_HIGH>,
+            <&gpio0 3  GPIO_ACTIVE_HIGH>;
         col-gpios =
             <&gpio0 0  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&gpio0 1  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>, 
@@ -75,7 +75,13 @@
             <&gpio0 27 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            // mando a tierra este pin que causa pulsaciones dobles si no lo pongo a gnd
+        /*
+            OJO EL GPIO1_11 POR ALGUNA RAZON AL DEJARLO SUELTO
+            GENERA PULSACIONES FANTASMA NO SE COMO DESABILITARLO
+            O ANULAR ESE PIN LA UNICA FORMA DE QUE NO DE ESAS PULSACIONES
+            ES METERLO AQUI COMO UNA COLUMA FANTASMA SI ALGUIEN SABE
+            COMO ARREGLAR ESTO SE LO AGRADECERIA UN MONTON
+        */
             <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
@@ -85,27 +91,16 @@
         transform = <&default_transform>;
         kscan = <&kscan0>;
         keys =
-            /* F0: 15 teclas (Esc hasta Mute) */
             <&key_physical_attrs 100 100 0 0 0 0 0>, <&key_physical_attrs 100 100 125 0 0 0 0>, <&key_physical_attrs 100 100 225 0 0 0 0>, <&key_physical_attrs 100 100 325 0 0 0 0>, <&key_physical_attrs 100 100 425 0 0 0 0>, <&key_physical_attrs 100 100 550 0 0 0 0>, <&key_physical_attrs 100 100 650 0 0 0 0>, <&key_physical_attrs 100 100 750 0 0 0 0>, <&key_physical_attrs 100 100 850 0 0 0 0>, <&key_physical_attrs 100 100 975 0 0 0 0>, <&key_physical_attrs 100 100 1075 0 0 0 0>, <&key_physical_attrs 100 100 1175 0 0 0 0>, <&key_physical_attrs 100 100 1275 0 0 0 0>, <&key_physical_attrs 100 100 1400 0 0 0 0>, <&key_physical_attrs 100 100 1525 0 0 0 0>,
-
-            /* F1: 16 teclas (Grave ... Home, PgUp visualmente abajo) */
             <&key_physical_attrs 100 100 0 125 0 0 0>, <&key_physical_attrs 100 100 100 125 0 0 0>, <&key_physical_attrs 100 100 200 125 0 0 0>, <&key_physical_attrs 100 100 300 125 0 0 0>, <&key_physical_attrs 100 100 400 125 0 0 0>, <&key_physical_attrs 100 100 500 125 0 0 0>, <&key_physical_attrs 100 100 600 125 0 0 0>, <&key_physical_attrs 100 100 700 125 0 0 0>, <&key_physical_attrs 100 100 800 125 0 0 0>, <&key_physical_attrs 100 100 900 125 0 0 0>, <&key_physical_attrs 100 100 1000 125 0 0 0>, <&key_physical_attrs 100 100 1100 125 0 0 0>, <&key_physical_attrs 100 100 1200 125 0 0 0>, 
-            <&key_physical_attrs 200 100 1300 125 0 0 0>, /* BkSp */
-            <&key_physical_attrs 100 100 1525 125 0 0 0>, /* Home */
-            <&key_physical_attrs 100 100 1525 225 0 0 0>, /* PgUp (Movido visualmente a la Fila 2) */
-
-            /* F2: 15 teclas (Tab ... PgDn visualmente abajo) */
+            <&key_physical_attrs 200 100 1300 125 0 0 0>,
+            <&key_physical_attrs 100 100 1525 125 0 0 0>,
+            <&key_physical_attrs 100 100 1525 225 0 0 0>,
             <&key_physical_attrs 150 100 0 225 0 0 0>, <&key_physical_attrs 100 100 150 225 0 0 0>, <&key_physical_attrs 100 100 250 225 0 0 0>, <&key_physical_attrs 100 100 350 225 0 0 0>, <&key_physical_attrs 100 100 450 225 0 0 0>, <&key_physical_attrs 100 100 550 225 0 0 0>, <&key_physical_attrs 100 100 650 225 0 0 0>, <&key_physical_attrs 100 100 750 225 0 0 0>, <&key_physical_attrs 100 100 850 225 0 0 0>, <&key_physical_attrs 100 100 950 225 0 0 0>, <&key_physical_attrs 100 100 1050 225 0 0 0>, <&key_physical_attrs 100 100 1150 225 0 0 0>, <&key_physical_attrs 100 100 1250 225 0 0 0>, 
-            <&key_physical_attrs 150 100 1350 225 0 0 0>, /* BSLH */
-            <&key_physical_attrs 100 100 1525 325 0 0 0>, /* PgDn (Movido visualmente a la Fila 3) */
-
-            /* F3: 13 teclas (Caps hasta Ret) */
+            <&key_physical_attrs 150 100 1350 225 0 0 0>,
+            <&key_physical_attrs 100 100 1525 325 0 0 0>,
             <&key_physical_attrs 175 100 0 325 0 0 0>, <&key_physical_attrs 100 100 175 325 0 0 0>, <&key_physical_attrs 100 100 275 325 0 0 0>, <&key_physical_attrs 100 100 375 325 0 0 0>, <&key_physical_attrs 100 100 475 325 0 0 0>, <&key_physical_attrs 100 100 575 325 0 0 0>, <&key_physical_attrs 100 100 675 325 0 0 0>, <&key_physical_attrs 100 100 775 325 0 0 0>, <&key_physical_attrs 100 100 875 325 0 0 0>, <&key_physical_attrs 100 100 975 325 0 0 0>, <&key_physical_attrs 100 100 1075 325 0 0 0>, <&key_physical_attrs 100 100 1175 325 0 0 0>, <&key_physical_attrs 225 100 1275 325 0 0 0>,
-
-            /* F4: 13 teclas (LShft hasta Up) */
             <&key_physical_attrs 225 100 0 425 0 0 0>, <&key_physical_attrs 100 100 225 425 0 0 0>, <&key_physical_attrs 100 100 325 425 0 0 0>, <&key_physical_attrs 100 100 425 425 0 0 0>, <&key_physical_attrs 100 100 525 425 0 0 0>, <&key_physical_attrs 100 100 625 425 0 0 0>, <&key_physical_attrs 100 100 725 425 0 0 0>, <&key_physical_attrs 100 100 825 425 0 0 0>, <&key_physical_attrs 100 100 925 425 0 0 0>, <&key_physical_attrs 100 100 1025 425 0 0 0>, <&key_physical_attrs 100 100 1125 425 0 0 0>, <&key_physical_attrs 175 100 1225 425 0 0 0>, <&key_physical_attrs 100 100 1425 425 0 0 0>,
-
-            /* F5: 9 teclas (Ctrl hasta Flechas) */
             <&key_physical_attrs 125 100 0 525 0 0 0>, <&key_physical_attrs 125 100 125 525 0 0 0>, <&key_physical_attrs 125 100 250 525 0 0 0>, <&key_physical_attrs 625 100 375 525 0 0 0>, <&key_physical_attrs 125 100 1000 525 0 0 0>, <&key_physical_attrs 125 100 1125 525 0 0 0>, <&key_physical_attrs 100 100 1325 525 0 0 0>, <&key_physical_attrs 100 100 1425 525 0 0 0>, <&key_physical_attrs 100 100 1525 525 0 0 0>
         ;
     };
@@ -127,8 +122,7 @@
         };
     };
 };
+
 zephyr_udc0: &usbhs {
     status = "okay";
-    phy-handle = <&usbphy1>;
 };
-&usbphy1 { status = "okay"; tx-d-cal = <5>; tx-cal-45-dp-ohms = <10>; tx-cal-45-dm-ohms = <10>; };
