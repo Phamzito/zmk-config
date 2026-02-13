@@ -1,1 +1,3 @@
-# Hola
+# HyperX Alloy Rise 75
+
+Intente portear este teclado a ZMK y logre que lo ejecutara PERO por algun motivo al dejar pines sueltos osea gpios flotantes como que hacen pulsaciones fantasma, en rowq2col todo funciona el unico detalle es que el pin GPIO1 11 me da problemas y no se como desabilitarlo asi que lo añadi a una columna (me siento sucio al hacer esto pero no encontre forma, no soy bueno en zephyr hice lo que pude) y con eso quito pulsaciones dobles hacia abajo, para controlar las luces RGB maneja 2 SONIX SNLED pero no hay driver, QMK si tiene el driver PERO QMK no tiene soporte para soc lpc5516 de nxp
