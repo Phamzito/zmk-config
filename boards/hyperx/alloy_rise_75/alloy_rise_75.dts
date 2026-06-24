@@ -50,14 +50,20 @@
         diode-direction = "col2row"; 
         
         /* Quitamos todo (PULL, PUSH, ACTIVE) para que el pin esté en flotante */
+        kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row"; 
+        
+        /* PULL_UP ancla la señal a 3.3V (reposo), evitando teclas fantasma */
         row-gpios =
-            <&gpio0 30 GPIO_ACTIVE_LOW>,
-            <&gpio0 29 GPIO_ACTIVE_LOW>,
-            <&gpio0 19 GPIO_ACTIVE_LOW>,
-            <&gpio0 6  GPIO_ACTIVE_LOW>,
-            <&gpio0 4  GPIO_ACTIVE_LOW>,
-            <&gpio0 3  GPIO_ACTIVE_LOW>;
+            <&gpio0 30 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 19 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+            <&gpio0 3  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
             
+        /* Columnas limpias: solo barren el 0V nativo de la placa */
         col-gpios =
             <&gpio0 0  GPIO_ACTIVE_LOW>,
             <&gpio0 1  GPIO_ACTIVE_LOW>, 
