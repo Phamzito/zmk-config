@@ -74,15 +74,7 @@
             <&gpio0 25 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&gpio0 27 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
             <&gpio0 28 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-            <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
-        /*
-            OJO EL GPIO1_11 POR ALGUNA RAZON AL DEJARLO SUELTO
-            GENERA PULSACIONES FANTASMA NO SE COMO DESABILITARLO
-            O ANULAR ESE PIN LA UNICA FORMA DE QUE NO DE ESAS PULSACIONES
-            ES METERLO AQUI COMO UNA COLUMA FANTASMA SI ALGUIEN SABE
-            COMO ARREGLAR ESTO SE LO AGRADECERIA UN MONTON
-        */
-            <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+            <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
     };
 
     physical_layout0: physical_layout_0 {
@@ -123,6 +115,16 @@
     };
 };
 
+&gpio1 {
+    status = "okay";
+    silencer_hog {
+        gpio-hog;
+        gpios = <11 GPIO_ACTIVE_HIGH>;
+        output-low; 
+    };
+};
+
 zephyr_udc0: &usbhs {
     status = "okay";
 };
+
