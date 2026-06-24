@@ -118,15 +118,6 @@
     };
 };
 
-&i2c0 {
-    status = "okay";
-    clock-frequency = <400000>;
-    sonix_rgb: sonix_rgb@0 {
-        compatible = "i2c-device";
-        reg = <0x00>; /* Ajusta la dirección I2C real del chip si la conoces */
-        status = "okay";
-    };
-};
 
 zephyr_udc0: &usbhs {
     status = "okay";
