@@ -118,12 +118,13 @@
     };
 };
 
-&gpio1 {
+&i2c0 {
     status = "okay";
-    silencer_hog {
-        gpio-hog;
-        gpios = <11 GPIO_ACTIVE_HIGH>;
-        output-low; 
+    clock-frequency = <400000>;
+    sonix_rgb: sonix_rgb@0 {
+        compatible = "i2c-device";
+        reg = <0x00>; /* Ajusta la dirección I2C real del chip si la conoces */
+        status = "okay";
     };
 };
 
